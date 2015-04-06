@@ -11,13 +11,16 @@ import mochaPhantomJS from 'gulp-mocha-phantomjs'
 
 
 export default function (config) {
-  var rootDir = config.rootDir
-    , gulp = config.gulp
+  let {
+    rootDir,
+    gulp,
+    testEnv
+  } = config
 
-  provideTasks(gulp, rootDir)
+  provideTasks(gulp, rootDir, testEnv)
 }
 
-function provideTasks(gulp, rootDir) {
+function provideTasks(gulp, rootDir, testEnv) {
 
   var src = `${rootDir}/src`
     , test = `${rootDir}/test`
@@ -44,7 +47,7 @@ function provideTasks(gulp, rootDir) {
 
   gulp.task('build', ['copy-nonjs', 'build-js'])
 
-  gulp.task('test', ['test-node'])
+  gulp.task('test', [`test-${testEnv}`])
 
   gulp.task('test-browser', ['webpack'], () =>
     gulp.src('test/runner.html')
