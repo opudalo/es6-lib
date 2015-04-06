@@ -6,5 +6,6 @@ var gulp = require('gulp')
 
 es6lib({
   gulp: gulp,
-  rootDir: __dirname
+  rootDir: __dirname,
+  testEnv: 'node'
 })

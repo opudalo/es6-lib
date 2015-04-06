@@ -9,7 +9,6 @@ import tagVersion from 'gulp-tag-version'
 import webpack from 'gulp-webpack-build'
 import mochaPhantomJS from 'gulp-mocha-phantomjs'
 
-
 export default function (config) {
   let {
     rootDir,
@@ -24,7 +23,6 @@ function provideTasks(gulp, rootDir, testEnv) {
 
   var src = `${rootDir}/src`
     , test = `${rootDir}/test`
-    , tools = `${rootDir}/tools`
     , dist = `${rootDir}/dist`
     , lib = `${rootDir}/lib`
     , mochaPhantomConfig = {
@@ -50,19 +48,19 @@ function provideTasks(gulp, rootDir, testEnv) {
   gulp.task('test', [`test-${testEnv}`])
 
   gulp.task('test-browser', ['webpack'], () =>
-    gulp.src('test/runner.html')
+    gulp.src(`${test}/runner.html`)
       .pipe(mochaPhantomJS(mochaPhantomConfig))
       .on('error', onerror)
   )
 
   gulp.task('test-node', ['build'], () => {
-    gulp.src(['test/**/*.js'])
+    gulp.src([`${test}/**/*.js`])
       .pipe(mocha())
       .on('error', onerror)
   })
 
   gulp.task('webpack', ['build'], () => {
-    var stream = gulp.src(path.join(tools, 'webpack_config.js'))
+    var stream = gulp.src('./webpack_config.js')
       .pipe(webpack.compile())
       .pipe(webpack.format({
         version: false,
