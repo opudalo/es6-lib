@@ -1,0 +1,50 @@
+{
+  "name": "es6-lib",
+  "version": "0.0.1",
+  "description": "es6-lib micro library",
+  "directories": {
+    "lib": "./lib"
+  },
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opudalo/es6-lib"
+  },
+  "keywords": [
+    "es6",
+    "micro",
+    "microjs",
+    "es6-lib"
+  ],
+  "author": {
+    "name": "Eugene Chechurin",
+    "email": "e.chechurin@gmail.com",
+    "url": "https://github.com/opudalo"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/opudalo/es6-lib",
+  "scripts": {
+    "watch": "gulp watch",
+    "prepublish": "gulp prepublish",
+    "test": "gulp test",
+    "test-node": "gulp test-node",
+    "test-browser": "gulp test-browser"
+  },
+  "devDependencies": {
+    "babel": "^4.6.1",
+    "babel-core": "^4.6.1",
+    "babel-loader": "^4.0.0",
+    "chai": "^2.1.0",
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-babel": "^4.0.0",
+    "gulp-bump": "^0.3.0",
+    "gulp-filter": "^2.0.2",
+    "gulp-git": "^1.1.0",
+    "gulp-mocha": "^2.0.0",
+    "gulp-mocha-phantomjs": "^0.5.3",
+    "gulp-tag-version": "^1.2.1",
+    "gulp-webpack-build": "^0.5.1",
+    "mocha": "^2.1.0"
+  }
+}
