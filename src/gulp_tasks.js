@@ -1,13 +1,15 @@
 import del from 'del'
-import path from 'path'
 import git from 'gulp-git'
-import babel from 'gulp-babel'
 import bump from 'gulp-bump'
+import babel from 'gulp-babel'
 import mocha from 'gulp-mocha'
 import filter from 'gulp-filter'
+import webpack from 'gulp-webpack'
 import tagVersion from 'gulp-tag-version'
-import webpack from 'gulp-webpack-build'
 import mochaPhantomJS from 'gulp-mocha-phantomjs'
+import webpackConfig from './webpack_config'
+
+
 
 export default function (config) {
   let {
@@ -34,7 +36,6 @@ function provideTasks(gulp, rootDir, testEnv) {
       }
     }
 
-
   gulp.task('default', ['watch'])
 
   gulp.task('watch', ['test'], () => {
@@ -59,18 +60,14 @@ function provideTasks(gulp, rootDir, testEnv) {
       .on('error', onerror)
   })
 
-  gulp.task('webpack', ['build'], () => {
-    var stream = gulp.src('./webpack_config.js')
-      .pipe(webpack.compile())
-      .pipe(webpack.format({
-        version: false,
-        timings: true
-      }))
-      .pipe(webpack.failAfter({
-        errors: true,
-        warnings: true
-      }))
-    return stream
+  gulp.task("webpack", ['build'], function() {
+    let config = webpackConfig(rootDir)
+      , entry = config.entry
+      , output = config.output.path
+
+    return gulp.src(entry)
+      .pipe(webpack(config))
+      .pipe(gulp.dest(output))
   })
 
   gulp.task('clean',

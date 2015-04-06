@@ -12,10 +12,6 @@ module.exports = function (config) {
   tasks(config)
 }
 
-module.exports.polyfill = require('babel/polyfill')
-module.exports.chai = require('chai')
-module.exports.gulp = require('gulp')
-
 
 function useBabel(options) {
   if (typeof options == 'string')
