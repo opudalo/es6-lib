@@ -1,16 +1,26 @@
 # es6-lib
 
-es6-lib micro library
+es6-lib is an enviroment setup for es6 libraries  
+a collection of gulp tasks for [es6-lib generator](https://github.com/opudalo/generator-es6-lib)
 
 ## Installation
 
-- `npm i --save opudalo/es6-lib`  
-or  
-- `bower i --save opudalo/es6-lib`
-
+- `npm i --save es6-lib`  
 
 ## Examples
 
-```js
-  // TODO
+```javascript
+// gulpfile.js
+
+// NOTE must be es5
+var es6lib = require('es6-lib')
+var gulp = require('gulp')
+
+es6lib({
+  gulp: gulp,
+  rootDir: __dirname,
+  testEnv: 'node'
+})
 ```
+
+Also, try [es6-lib generator](https://github.com/opudalo/generator-es6-lib)
