@@ -15,13 +15,9 @@ export default function (config) {
   let {
     rootDir,
     gulp,
-    testEnv
+    testEnv,
+    webpackNoParse
   } = config
-
-  provideTasks(gulp, rootDir, testEnv)
-}
-
-function provideTasks(gulp, rootDir, testEnv) {
 
   var src = `${rootDir}/src`
     , test = `${rootDir}/test`
@@ -61,7 +57,10 @@ function provideTasks(gulp, rootDir, testEnv) {
   })
 
   gulp.task("webpack", ['build'], function() {
-    let config = webpackConfig(rootDir)
+    let config = webpackConfig({
+        rootDir: rootDir,
+        noParse: webpackNoParse
+      })
       , entry = config.entry
       , output = config.output.path
 

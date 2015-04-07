@@ -1,7 +1,9 @@
 import webpack from 'webpack'
 import path from 'path'
 
-export default function (rootDir) {
+export default function (config) {
+  let rootDir = config.rootDir
+    , noParse = config.noParse || []
   return {
     resolve: {
       modulesDirectories: ['node_modules', 'bower_components']
@@ -10,9 +12,11 @@ export default function (rootDir) {
       root: path.join(__dirname, "../node_modules")
     },
     module: {
+      noParse: noParse,
       loaders: [{
         test: /\.js$/,
-        loader: 'babel-loader?blacklist=strict'
+        loader: 'babel-loader?blacklist=strict',
+        exclude: /node_modules/
       }]
     },
     plugins: [
