@@ -6,7 +6,7 @@ module.exports = function (config) {
    * useBabel MUST be called before first require
    * */
 
-  useBabel(config.rootDir)
+  if (!config.es5mode) useBabel(config.rootDir)
 
   var tasks = require('./gulp_tasks')
   tasks(config)

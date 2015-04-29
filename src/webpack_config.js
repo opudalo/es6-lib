@@ -13,11 +13,7 @@ export default function (config) {
     },
     module: {
       noParse: noParse,
-      loaders: [{
-        test: /\.js$/,
-        loader: 'babel-loader?blacklist=strict',
-        exclude: /node_modules/
-      }]
+      loaders: getLoaders(config.es5mode)
     },
     plugins: [
       new webpack.ResolverPlugin(
@@ -32,3 +28,12 @@ export default function (config) {
   }
 }
 
+function getLoaders (es5mode) {
+  if (es5mode) return []
+
+  return [{
+    test: /\.js$/,
+    loader: 'babel-loader?blacklist=strict',
+    exclude: /node_modules/
+  }]
+}

@@ -16,7 +16,8 @@ export default function (config) {
     rootDir,
     gulp,
     testEnv,
-    webpackNoParse
+    webpackNoParse,
+    es5mode
   } = config
 
   var src = `${rootDir}/src`
@@ -59,7 +60,8 @@ export default function (config) {
   gulp.task("webpack", ['build'], function() {
     let config = webpackConfig({
         rootDir: rootDir,
-        noParse: webpackNoParse
+        noParse: webpackNoParse,
+        es5mode: es5mode
       })
       , entry = config.entry
       , output = config.output.path
@@ -79,9 +81,15 @@ export default function (config) {
   )
 
   gulp.task('build-js', ['clean'],
-    () => gulp.src(`${src}/**/*.js`)
-      .pipe(babel({experimental: true}))
-      .pipe(gulp.dest(lib))
+    () => {
+      if (es5mode)
+        return gulp.src(`${src}/**/*.js`)
+          .pipe(gulp.dest(lib))
+      else
+        return gulp.src(`${src}/**/*.js`)
+          .pipe(babel({experimental: true}))
+          .pipe(gulp.dest(lib))
+    }
   )
 
   /*
