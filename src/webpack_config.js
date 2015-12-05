@@ -33,7 +33,7 @@ function getLoaders (es5mode) {
 
   return [{
     test: /\.js$/,
-    loader: 'babel-loader?blacklist=strict',
+    loader: 'babel-loader',
     exclude: /node_modules/
   }]
 }
