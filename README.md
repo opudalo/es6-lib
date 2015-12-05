@@ -1,4 +1,4 @@
-# es6-lib
+# es6-lib [![Build Status](https://travis-ci.org/opudalo/es6-lib.svg?branch=master)](https://travis-ci.org/opudalo/es6-lib)
 
 es6-lib is an enviroment setup for es6 libraries  
 a collection of gulp tasks for [es6-lib generator](https://github.com/opudalo/generator-es6-lib)
