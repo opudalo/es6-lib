@@ -1,7 +1,7 @@
 import gulp from 'gulp'
-import tasks from './src/gulp_tasks'
+import es6lib from './src/index'
 
-tasks({
+es6lib({
   gulp: gulp,
   rootDir: __dirname,
   testEnv: 'node'
