@@ -4,7 +4,7 @@ import bump from 'gulp-bump'
 import babel from 'gulp-babel'
 import mocha from 'gulp-mocha'
 import filter from 'gulp-filter'
-import webpack from 'gulp-webpack'
+import webpack from 'webpack-stream'
 import tagVersion from 'gulp-tag-version'
 import mochaPhantomJS from 'gulp-mocha-phantomjs'
 import webpackConfig from './webpack_config'
@@ -87,7 +87,11 @@ export default function (config) {
           .pipe(gulp.dest(lib))
       else
         return gulp.src(`${src}/**/*.js`)
-          .pipe(babel({experimental: true}))
+          .pipe(
+            babel({
+              presets: ['es2015']
+            })
+          )
           .pipe(gulp.dest(lib))
     }
   )
