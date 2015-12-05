@@ -23,7 +23,7 @@ function useBabel(options) {
   if (!('experimental' in options)) options.experimental = true
   if (options.rootDir) options = configDepth(options)
 
-  require('babel/register')(options)
+  require('babel-core/register')(options)
   // workaround for broken gulp-watch
   // https://github.com/babel/babel/issues/489#issuecomment-85736890
   Object.getPrototypeOf.toString = function() {
